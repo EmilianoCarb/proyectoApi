@@ -24,6 +24,28 @@ class almacen
 
     agregar(auto)
     {
-        if()
+       let placa = this.buscar(auto.placa); 
+        if(!placa) this.almacen.push(auto);
+        else return null;
+    }
+
+       
+    listar()
+    {
+        
+    }
+     
+    buscar(placa) {
+        let auto =this.almacen.find(carro => carro.placa == placa); 
+        if(!auto) return null;
+        return auto;
+    }
+    
+    eliminar(placa) {
+        const indice = this.clases.findIndex(carro => carro.placa == placa);
+            if (indice == -1) {
+                return null;
+            }
+            return this.clases.splice(indice, 1)[0];
     }
 }
