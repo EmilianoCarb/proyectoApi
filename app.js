@@ -29,12 +29,6 @@ class Almacen
         else return null;
     }
 
-       
-    listar()
-    {
-        
-    }
-     
     buscar(placa) {
         let auto =this.almacen.find(carro => carro.placa == placa); 
         if(!auto) return null;
