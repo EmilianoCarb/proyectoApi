@@ -5,7 +5,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-class vehiculo
+export class vehiculo
 {
     constructor(placa,marca,modelo)
     {
