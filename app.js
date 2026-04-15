@@ -44,9 +44,11 @@ export class Almacen
             return this.almacen.splice(indice, 1)[0];
     }
 }
-
+let auto1 = new Vehiculo(12,"toyota", "algo");
+let auto2 = new Vehiculo(13,"nissan", "ejemplo");
 let almacen = new Almacen();
-
+almacen.agregar(auto1)
+almacen.agregar(auto2)
 app.get('/vehiculo', (req, res) => {
     res.json(almacen.almacen)
 })
@@ -60,13 +62,7 @@ app.get('/vehiculo/:placa', (req, res) =>
         res.json(carro);
     } else 
     {
-        res.json({mensaje:"Auto no encontrado"})
-        res.status(404).json(
-
-            {
-                mensaje:"Auto no encontrado"
-            }
-        )
+        res.status(404).json({ mensaje: "Auto no encontrado" })
     }
 })
 
@@ -82,7 +78,7 @@ app.delete('/vehiculo/:placa', (req, res) => {
 });
 app.post('/vehiculo', (req, res) => {
     const carro = req.body
-    if(almacen.buscar(carro.placa) != null) 
+    if(almacen.buscar(carro.placa) == null) 
     {almacen.agregar(carro)
     res.status(201).json({
         mensaje: "Vehículo guardado exitosamente",
