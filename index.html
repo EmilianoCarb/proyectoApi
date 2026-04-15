@@ -11,10 +11,30 @@
 <body>
     <div id="contenedorCarros" class ="contenedor-carros">
         <h2 style="align-items: center;">Agregar Carro</h2>
-        <button id="btnAgregar">Agregar</button>
+        `<h4>Complete los campos con la informacion requerida</h4>
+
+        <form id = "formulario-carro">
+            <label>Placa:</label>
+            <input type="text" id="placa" required>
+            <br>
+            <label>Marca:</label>
+            <input type = "text" id="marca" required>   
+            <br>
+            <label>Modelo</label>
+            <input type="text" id="modelo" required>
+            <br>
+        </form>
+        <br>
+        
+        
+        
+        
     </div>
-
-
-
+    <div id="contenedorBotones" class="contenedorbotones">
+        <button id="btnAgregar" type="button">Agregar</button>
+        <button id="btnEliminar" type="button">Eliminar</button>
+        <button id="btnListar" type="button">Listar</button>
+        <button id="btnBuscar" type="button">Buscar</button>
+    </div>
 </body>
 </html>

@@ -1,32 +1,63 @@
-import { vehiculo } from "./app"
+import { Vehiculo, almacen, Almacen } from "./app"
 let btnAgregar = document.getElementById("btnAgregar")
-let divCarros = document.getElementById("contenedorCarros") 
-btnAgregar.addEventListener(click, () => 
+let divCarros = document.getElementById("contenedorCarros")
+let btnEliminar = document.getElementById("btnEliminar")
+let btnListar = document.getElementById("btnListar")
+let btnBuscar = document.getElementById("btnBuscar")
+btnAgregar.addEventListener("click", () => 
 {
-    divCarros =''
-    let texto = `<h4>Complete los campos con la informacion requerida</h4>
+    let placaV = document.getElementById("placa").value
+    let marcaV = document.getElementById("marca").value
+    let modeloV = document.getElementById("modelo").value
+    let nuevoCarro = {placa: placaV, marca: marcaV,modelo: modeloV}
+    fetch(`http://localhost:3000/vehiculo`, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(nuevoCarro)
+    })  
+    .then(response => response.json())
+    .then(data =>
+        
+        console.log(data)
+    ) })
 
-        <form id = "formulario-carro">
-            <label>Placa:</label>
-            <input type="text" id="placa" required>
-            <br>
-            <label>Marca:</label>
-            <input type = "text" id="marca" required>   
-            <br>
-            <label>Modelo</label>
-            <input type="text" id="modelo" required>
-            <br>
-            <button type="button" onclick=guardar()>Guardar Carro</button>
-        </form>`;
-    divCarros.innerHtml += texto;
+
+btnBuscar.addEventListener("click", ()=> 
+{   
+    let placaV = document.getElementById("placa").value
+    fetch(`http://localhost:3000/vehiculo/${placaV}`)
+    .then(response => response.json())
+    .then(data => 
+    {
+        let texto = `Placa: ${data.placa}, Marca: ${data.marca}, Modelo: ${data.modelo}`;
+        divCarros.innerHTML = texto;
+    })
 })
 
-function guardar()
+btnListar.addEventListener("click", ()=> 
+{   
+    let placaV = document.getElementById("placa").value
+    fetch(`http://localhost:3000/vehiculo/${placaV}`)
+    .then(response => response.json())
+    .then(data => 
+    {
+
+    })
+})
+
+btnEliminar.addEventListener("click", ()=>
 {
-    let placa = document.getElementById("placa")
-    let marca = document.getElementById("marca")
-    let modelo = document.getElementById("modelo")
-    let carro = new vehiculo()
-}
-
-
+    let placaV = document.getElementById("placa").value
+    fetch(`http://localhost:3000/vehiculo/${placaV}`, 
+{method: 'DELETE',
+    headers: {
+        'Content-Type': 'application/json'
+    }
+    })  
+    .then(response => response.json())
+    .then(data =>
+        
+        console.log(data)
+    ) })

@@ -5,7 +5,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-export class vehiculo
+export class Vehiculo
 {
     constructor(placa,marca,modelo)
     {
@@ -15,7 +15,7 @@ export class vehiculo
     }
 }
 
-class Almacen 
+export class Almacen 
 {
     constructor()
     {
@@ -32,6 +32,7 @@ class Almacen
     buscar(placa) {
         let auto =this.almacen.find(carro => carro.placa == placa); 
         if(!auto) return null;
+        
         return auto;
     }
     
@@ -46,12 +47,11 @@ class Almacen
 
 let almacen = new Almacen();
 
-app.get('/carros', (req, res) => 
-{
+app.get('/vehiculo', (req, res) => {
     res.json(almacen.almacen)
 })
 
-app.get('/carros/:placa', (req, res) => 
+app.get('/vehiculo/:placa', (req, res) => 
 {
     let placa = req.params.placa;
     let carro = almacen.buscar(placa);
@@ -60,6 +60,7 @@ app.get('/carros/:placa', (req, res) =>
         res.json(carro);
     } else 
     {
+        res.json({mensaje:"Auto no encontrado"})
         res.status(404).json(
 
             {
@@ -69,16 +70,31 @@ app.get('/carros/:placa', (req, res) =>
     }
 })
 
-app.delete('/carros/:placa', (req, res) => {
+app.delete('/vehiculo/:placa', (req, res) => {
     const placa = req.params.placa;
     const eliminado = almacen.eliminar(placa);
     
     if (eliminado) {
-        res.json({ mensaje: "Eliminado con éxito", auto: eliminado });
+        res.json({ mensaje: "Eliminado con éxito", auto: eliminado.placa });
     } else {
         res.status(404).json({ mensaje: "No se pudo eliminar: placa no encontrado" });
     }
 });
+app.post('/vehiculo', (req, res) => {
+    const carro = req.body
+    if(almacen.buscar(carro.placa) != null) 
+    {almacen.agregar(carro)
+    res.status(201).json({
+        mensaje: "Vehículo guardado exitosamente",
+        data: req.body
+    })
+    } else 
+    {
+        res.status(404).json({mensaje:"Carro con esa placa ya existe"})
+    }
+})
+
+
 
 app.listen(3000, () => {
     console.log('Servidor corriendo en http://localhost:3000');
