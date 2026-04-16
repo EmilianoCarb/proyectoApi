@@ -4,8 +4,7 @@ import cors from 'cors'
 const app = express();
 app.use(cors());
 app.use(express.json());
-
-export class Vehiculo
+class Vehiculo
 {
     constructor(placa,marca,modelo)
     {
@@ -15,7 +14,7 @@ export class Vehiculo
     }
 }
 
-export class Almacen 
+class Almacen 
 {
     constructor()
     {
@@ -44,8 +43,8 @@ export class Almacen
             return this.almacen.splice(indice, 1)[0];
     }
 }
-let auto1 = new Vehiculo(12,"toyota", "algo");
-let auto2 = new Vehiculo(13,"nissan", "ejemplo");
+let auto1 = new Vehiculo(1,"toyota", "Corrola");
+let auto2 = new Vehiculo(2,"nissan", "Kicks");
 let almacen = new Almacen();
 almacen.agregar(auto1)
 almacen.agregar(auto2)
