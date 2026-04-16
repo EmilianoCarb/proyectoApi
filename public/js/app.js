@@ -1,3 +1,5 @@
+const API_URL = "http://localhost:3000/vehiculo"
+
 let btnAgregar = document.getElementById("btnAgregar")
 let divMensajes = document.getElementById("mensajes")
 let btnEliminar = document.getElementById("btnEliminar")
@@ -29,7 +31,7 @@ btnAgregar.addEventListener("click", () => {
     }
 
     let nuevoCarro = {placa: placaV, marca: marcaV, modelo: modeloV}
-    fetch(`http://localhost:3000/vehiculo`, {
+    fetch(API_URL, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -60,7 +62,7 @@ btnBuscar.addEventListener("click", () => {
         return null;
     }
 
-    fetch(`http://localhost:3000/vehiculo/${placaV}`)
+    fetch(API_URL + `/${placaV}`)
     .then(response => response.json().then(data => ({ ok: response.ok, data })))
     .then(result => {
         if (result.ok && !result.data.mensaje) {
@@ -81,7 +83,7 @@ btnBuscar.addEventListener("click", () => {
 
 btnListar.addEventListener("click", () => {
     clearMessage()
-    fetch(`http://localhost:3000/vehiculo`)
+    fetch(API_URL)
     .then(response => response.json())
     .then(data => {
         if (!Array.isArray(data) || data.length === 0) {
@@ -112,7 +114,7 @@ btnEliminar.addEventListener("click", () => {
         return null
     }
 
-    fetch(`http://localhost:3000/vehiculo/${placaV}`, {
+    fetch(API_URL + `/${placaV}`, {
         method: 'DELETE'
     })  
     .then(response => response.json().then(data => ({ ok: response.ok, data })))
