@@ -43,3 +43,29 @@ h4,h2 {
     margin: 0%;
 }
 
+.contenedorbotones {
+    flex-direction: row;
+    gap: 10px;
+    display: flex;
+    justify-content: center;  /* centra horizontalmente */
+    align-items: center;
+}
+
+.card {
+  width: 300px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 10px; /* Esquinas redondeadas */
+  overflow: hidden;    /* Asegura que la imagen respete las esquinas */
+  font-family: Arial, sans-serif;
+}
+
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+  padding: 15px;
+  text-align: left;
+}

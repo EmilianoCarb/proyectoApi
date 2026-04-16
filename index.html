@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
-
 </head>
 <body>
-    <div class ="contenedor-carros">
+    <div id="contenedorCarros" class ="contenedor-carros">
         <h2 style="align-items: center;">Agregar Carro</h2>
-        <h4>Complete los campos con la informacion requerida</h4>
+        `<h4>Complete los campos con la informacion requerida</h4>
 
         <form id = "formulario-carro">
             <label>Placa:</label>
@@ -22,10 +21,20 @@
             <label>Modelo</label>
             <input type="text" id="modelo" required>
             <br>
-            <button type="submit">Guardar Carro</button>
         </form>
+        <br>    
+    </div>
+    
+    <div id="contenedorBotones" class="contenedorbotones">
+        <button id="btnAgregar" type="button">Agregar</button>
+        <button id="btnEliminar" type="button">Eliminar</button>
+        <button id="btnListar" type="button">Listar</button>
+        <button id="btnBuscar" type="button">Buscar</button>
     </div>
 
-    <script src="app.js"></script>
+      
+
+        <div id="mensajes" class="contenedor-carros"></div>
+  <script src="/main.js" type="module"></script>
 </body>
 </html>
