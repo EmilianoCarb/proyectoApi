@@ -43,8 +43,8 @@ class Almacen
             return this.almacen.splice(indice, 1)[0];
     }
 }
-let auto1 = new Vehiculo(1,"toyota", "Corrola");
-let auto2 = new Vehiculo(2,"nissan", "Kicks");
+let auto1 = new Vehiculo(1,"Toyota", "Corrola");
+let auto2 = new Vehiculo(2,"Nissan", "Kicks");
 let almacen = new Almacen();
 almacen.agregar(auto1)
 almacen.agregar(auto2)

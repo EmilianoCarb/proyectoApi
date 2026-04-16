@@ -64,7 +64,12 @@ btnBuscar.addEventListener("click", () => {
     .then(response => response.json().then(data => ({ ok: response.ok, data })))
     .then(result => {
         if (result.ok && !result.data.mensaje) {
-            showMessage("Auto encontrado", `Placa: ${result.data.placa}, Marca: ${result.data.marca}, Modelo: ${result.data.modelo}`)
+            let texto = `<br>
+                <div class="container">
+                    <h4><b>Auto con placa: ${result.data.placa}</b></h4>
+                    <p>Marca: ${result.data.marca}, <br>Modelo: ${result.data.modelo}</p>
+                </div>`
+            showMessage("Auto encontrado", texto)
         } else {
             showMessage("Auto no encontrado", `No se encontró el auto con placa ${placaV}.`)
         }
